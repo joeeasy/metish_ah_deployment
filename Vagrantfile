@@ -13,10 +13,10 @@ Vagrant.configure("2") do |config|
     nodeName = (i == 1) ? "frontend_server" : "backend_server"
     PORT = (i == 1) ? 3000 : 5000
     config.env.enable # Enable vagrant-env(.env)
-    config.ssh.username="vagrant"
-    config.ssh.password="vagrant"
-
+    
     config.vm.define nodeName do |subconfig|
+      subconfig.ssh.username= ENV['USERNAME']
+      subconfig.ssh.password= ENV['PASSWORD']
       subconfig.vm.box = BOX_OS
       subconfig.vm.provider "virtualbox" do |provider| 
         provider.name = nodeName
